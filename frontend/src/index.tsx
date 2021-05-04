@@ -10,3 +10,6 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+// Gráficos usados é do apex charts / https://www.fusioncharts.com/charts
+// yarn add react-apexcharts
