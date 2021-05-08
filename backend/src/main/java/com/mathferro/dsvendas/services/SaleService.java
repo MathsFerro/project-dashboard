@@ -1,6 +1,8 @@
 package com.mathferro.dsvendas.services;
 
 import com.mathferro.dsvendas.dto.SaleDTO;
+import com.mathferro.dsvendas.dto.SaleSuccessDTO;
+import com.mathferro.dsvendas.dto.SaleSumDTO;
 import com.mathferro.dsvendas.dto.SellerDTO;
 import com.mathferro.dsvendas.entities.Sale;
 import com.mathferro.dsvendas.entities.Seller;
@@ -29,5 +31,15 @@ public class SaleService {
         sellerRepository.findAll(); // Trazendo para memória os vendedores para evitar repetição de query, JPA vai armazenar em cache
         Page<Sale> result = repository.findAll(pageable);
         return result.map(SaleDTO::new);
+    }
+
+    @Transactional(readOnly = true)
+    public List<SaleSumDTO> amountGroupedBySeller() {
+        return repository.amountGroupedBySeller();
+    }
+
+    @Transactional(readOnly = true)
+    public List<SaleSuccessDTO> successGroupedBySeller() {
+        return repository.successGroupedBySeller();
     }
 }
